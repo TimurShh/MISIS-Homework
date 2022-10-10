@@ -5,7 +5,7 @@ int main() {
     int t = 0;
     std::cin >> t;
     while (t--) {
-        int n, x = 0;
+        int n = 0, x = 0;
         std::cin >> n >> x;
         std::vector<int> a(n);
         for (int i = 0; i < n; i++) {
