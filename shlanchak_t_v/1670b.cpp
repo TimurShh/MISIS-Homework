@@ -10,7 +10,7 @@ int main() {
         std::cin >> s;
         int k = 0;
         std::cin >> k;
-        map<char,int> a;
+        std::map<char,int> a;
         while(k--) {
             char x;
             std::cin >> x;
@@ -18,7 +18,7 @@ int main() {
                 a[x] = 1;
             }
         }
-        vector<char> letters;
+        std::vector<char> letters;
         for (auto const& [key, val] : a) {
             letters.push_back(key);
         }
