@@ -4,9 +4,9 @@
 #include <string>
 
 int main() {
-    // RAW / NOT READY YET
     int t = 1;
-    // СЛОН -> В СТОЛБЦЕ И СТРОКЕ 1 КРАСНАЯ КЛЕТКА + СПРАВА И СЛЕВА ЕСТЬ КРАСНЫЕ
+    std::cin >> t;
+    // СЛОН -> В СТОЛБЦЕ И СТРОКЕ 1 КРАСНАЯ КЛЕТКА + СПРАВА ИЛИ СЛЕВА + ВВЕРХ / ВНИЗ ЕСТЬ КРАСНЫЕ
     while (t--) {
         std::map<int, int> cols;
         std::map<int, int> rows;
@@ -28,13 +28,17 @@ int main() {
                 }
             }
         }
+        int fl = 1;
         for (const auto& [kC, vC] : cols) {
-            for (const auto& [kR, vR] : rows) {
-                if (cols[kC] == 1 && rows[kR] == 1) {
-                    std::cout << kC << ' ' << kR;
-                    break;
-                }
+                for (const auto& [kR, vR] : rows) {
+                    if (cols[kC] == 1 && rows[kR] == 1 && ((cols[kC+1] > 1 && rows[kR+1] == 1) || (cols[kC-1] > 1 && rows[kR-1] > 1))){
+                            if (fl != 0) {
+                                std::cout << kR + 1 << ' ' << kC+1 << '\n';
+                                fl = 0;
+                            }
+                    }
             }
         }
-    }
+
+}
 }
