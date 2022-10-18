@@ -1,31 +1,28 @@
 #include <iostream>
 #include <vector>
-
-
-using namespace std;
-
+#include <string>
 
 int main() {
-    // RAW / NOT READY YET
     int t = 0;
-    cin >> t;
+    std::cin >> t;
     while(t--) {
-        string s;
-        cin >> s;
-        if (s.length() == 1 || s[0]=='0') {
-            cout << 1 << '\n';
-        } else {
-            int res = 0, fl = 0;
-            for (int i = 1; i < s.length(); i++) {
-                if (s[i]!=s[i-1]) {
-                    fl = 1;
-                }
-                if (s[i]=='0' && s[i-1]!='0'){
-                    res += 2;
-                }
+        std::string s;
+        std::cin >> s;
+
+        int l = 0,r = s.length()-1;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == '0') {
+                r = i;
+                break;
             }
-            fl == 1 ? cout << res << '\n' : cout << s.length() << '\n';
         }
+        for (int i = s.length()-1; i >=0; i--) {
+            if (s[i] == '1') {
+                l = i;
+                break;
+            }
+        }
+        std::cout << r-l+1 << '\n';
 
     }
 }
