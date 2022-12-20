@@ -1,33 +1,33 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
  
 int main() {
-    int n = 0, k = 0;
+    long long n, k;
     std::cin >> n >> k;
     std::vector<int> a;
+    int max1 = -1;
     for (int i = 0; i < n; i++) {
-        int x;
-        std::cin >> x;
+        int x = 0;
+        std::cin>>x;
         a.push_back(x);
+        max1 < x ? max1 = x : max1*=1;
     }
-    int cnt = 0;
-    int lIndex = 0, nIndex = 1;;
-    if (k+1 > a.size()) {
-        int mx = *std::max_element(std::begin(a), std::end(a));
-        std::cout << mx;
-        return 0;
-    }
-    while (cnt < k) {
-        if (a[lIndex] > a[nIndex]) {
-            cnt++;
-            nIndex++;
-        } else {
-            cnt = 0;
-            a.push_back(a[lIndex]);
-            lIndex++;
-            nIndex = lIndex + 1;
+    if (k >= n) {
+        std::cout << max1;
+    } else {
+        int winSeq = 0;
+        int lastWinner = a[0];
+        for (int i = 1; i < n; i++) {
+            if (lastWinner > a[i]) {
+                winSeq++;
+            } else {
+                lastWinner = a[i];
+                winSeq = 1;
+            }
+            if (winSeq == k) {
+                break;
+            }
         }
+        std::cout << lastWinner;
     }
-    std::cout << a[lIndex];
 }
